@@ -167,6 +167,33 @@ public class AVLTree {
         return found;
     }
     
+    /*Functions to find an element and return it*/
+    public AVLNode searchAndGet(String pTag){
+        return searchAndGet(root, pTag);
+    }
+    
+    
+    public AVLNode searchAndGet(AVLNode pNode, String pVal){
+        AVLNode result = null;
+        boolean found = false;
+        while ((pNode != null) && !found)
+        {
+            String rval = (String) pNode.getData();
+            if (pVal.compareTo(rval) < 0)
+                pNode = pNode.getLeft();
+            else if (pVal.compareTo(rval) > 0)
+                pNode = pNode.getRight();
+            else
+            {
+                found = true;
+                return pNode;
+            }
+            found = search(pNode, pVal);
+        }
+        
+        return result;
+    }
+    
     /* Function for inorder traversal */
     public void inorder()
     {
@@ -360,6 +387,16 @@ public class AVLTree {
            current = current.getLeft();
  
         return current;
+    }
+    
+    //Setters y getters
+    
+    public void setRoot(AVLNode pNode){
+        this.root = pNode;
+    }
+    
+    public AVLNode getRoot(){
+        return this.root;
     }
     
 }
